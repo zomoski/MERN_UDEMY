@@ -1,0 +1,6 @@
+{
+    "mongoURI":  "mongodb+srv://SP:Test123@cluster0.0nwpr.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority" ,
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "dc039b84191858de6edc",
+    "githubSecret": "64a0b51a9fe3bc80768bcb104d0de0f07f43e6f5"
+}
