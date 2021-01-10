@@ -196,7 +196,7 @@ router.post(
 //@desc     Delete a comment
 //@access   Private
 
-router.delete("/:id/:comment_id", auth, async (req, res) => {
+router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
-const profile = require("../../models/Profile");
+const Post = require("../../models/Posts");
 const Profile = require("../../models/Profile");
 const { check, validationResult } = require("express-validator");
 const { compareSync } = require("bcryptjs");
@@ -77,11 +77,11 @@ router.post(
     //build social object
 
     profileFields.social = {};
-    if (youtube) profileFields.youtube = youtube;
-    if (twitter) profileFields.twitter = twitter;
-    if (facebook) profileFields.facebook = facebook;
-    if (linkedin) profileFields.linkedin = linkedin;
-    if (instagram) profileFields.instagram = instagram;
+    if (youtube) profileFields.social.youtube = youtube;
+    if (twitter) profileFields.social.twitter = twitter;
+    if (facebook) profileFields.social.facebook = facebook;
+    if (linkedin) profileFields.social.linkedin = linkedin;
+    if (instagram) profileFields.social.instagram = instagram;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -154,7 +154,8 @@ router.get("/user/:user_id", async (req, res) => {
 
 router.delete("/", auth, async (req, res) => {
   try {
-    // todo - remove users posts
+    // Remove users posts
+    //await Posts.deleteMany({ user: req.user.id });
     // remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // remove user
@@ -309,7 +310,7 @@ router.put(
 //@desc     Delete education from profile
 //@access   Private
 
-router.delete("/education/:exp_id", auth, async (req, res) => {
+router.delete("/education/:edu_id", auth, async (req, res) => {
   try {
     // remove education
 
